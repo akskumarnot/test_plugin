@@ -13,6 +13,11 @@ public class Calendar extends CordovaPlugin {
      public static final String ACTION_ADD_CALENDAR_ENTRY = "addCalendarEntry";
      public static final String BLUE_ENABLED="enabled";
      BluetoothAdapter BA= BluetoothAdapter.getDefaultAdapter();	
+
+	public Calendar(){
+		super();
+	}
+
 	@Override
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
  		try {
