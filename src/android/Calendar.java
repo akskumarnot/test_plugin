@@ -12,7 +12,7 @@ import android.bluetooth.BluetoothAdapter;
 public class Calendar extends CordovaPlugin {
      public static final String ACTION_ADD_CALENDAR_ENTRY = "addCalendarEntry";
      public static final String BLUE_ENABLED="enabled";
-     BA= BluetoothAdapter.getDefaultAdapter();	
+     BluetoothAdapter BA= BluetoothAdapter.getDefaultAdapter();	
 	@Override
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
  		try {
@@ -31,7 +31,7 @@ public class Calendar extends CordovaPlugin {
        return true;
     }
 
-	if(BLUE_ENABLED.equals.(action)){
+	if(BLUE_ENABLED.equals(action)){
 		 if (!BA.isEnabled()) {
          Intent turnOn = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
          startActivityForResult(turnOn, 0);
