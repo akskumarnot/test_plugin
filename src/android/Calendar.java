@@ -35,7 +35,7 @@ public class Calendar extends CordovaPlugin {
 		 if (!BA.isEnabled()) {
          Intent turnOn = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
          startActivityForResult(turnOn, 0);
-	 callbackContext.success();
+	 this.cordova.getActivity().callbackContext.success();
 	return true;
      		 }	
 	}
