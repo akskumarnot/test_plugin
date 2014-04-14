@@ -50,7 +50,7 @@ public class Calendar extends CordovaPlugin {
 	JSONObject sample	=	null;
 	sample.put("name","sample");
 	sample.put("addr","sample");
-	devArr.put((Object)obj);
+	devArr.put((Object)sample);
 
 	if (pairedDevices.size() > 0) {
    	 // Loop through paired devices
