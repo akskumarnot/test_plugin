@@ -1,6 +1,7 @@
 package org.aksnot.calendar;
  
 
+import android.util.Log;
 import java.util.Set;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -70,6 +71,7 @@ public class Calendar extends CordovaPlugin {
 	 	JSONObject data	=	null;	
 		data.put("arr",devArr);	
 		callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, data));
+		callbackContext.success();
 		Log.w("stop3", "yeah");
 	}	
 	return true;
