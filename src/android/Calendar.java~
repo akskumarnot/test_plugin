@@ -8,10 +8,21 @@ import org.json.JSONException;
 import android.app.Activity;
 import android.content.Intent;
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+
+//plugin result back to javascript
+import org.apache.cordova.api.Plugin;
+import org.apache.cordova.api.PluginResult;
+
 
 public class Calendar extends CordovaPlugin {
      public static final String ACTION_ADD_CALENDAR_ENTRY = "addCalendarEntry";
-     public static final String BLUE_ENABLED="enabled";
+
+     //api strings
+     public static final String BLUE_ENABLE="enable";
+     public static final String BLUE_IS_ENABLED="isEnabled";
+     public static final String BLUE_LIST_PAIRED="pairedList"
+	
      BluetoothAdapter BA= BluetoothAdapter.getDefaultAdapter();	
 
 	public Calendar(){
@@ -21,27 +32,36 @@ public class Calendar extends CordovaPlugin {
 	@Override
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
  		try {
-    if (ACTION_ADD_CALENDAR_ENTRY.equals(action)) {
-             JSONObject arg_object = args.getJSONObject(0);
-             Intent calIntent = new Intent(Intent.ACTION_EDIT)
-        .setType("vnd.android.cursor.item/event")
-        .putExtra("beginTime", arg_object.getLong("startTimeMillis"))
-        .putExtra("endTime", arg_object.getLong("endTimeMillis"))
-        .putExtra("title", arg_object.getString("title"))
-        .putExtra("description", arg_object.getString("description"))
-        .putExtra("eventLocation", arg_object.getString("eventLocation"));
- 
-       this.cordova.getActivity().startActivity(calIntent);
-       callbackContext.success();
-       return true;
-    }
 
-	if(BLUE_ENABLED.equals(action)){
-		 if (!BA.isEnabled()) {
+	if(BLUE_ENABLE.equals(action)){
+	 if (!BA.isEnabled()) {
          	BA.enable();
 	 callbackContext.success();
 	return true;
      		 }	
+	}
+
+	if(BLUE_LIST_PAIRED.equals(action)){
+	Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
+	// If there are paired devices
+	if (pairedDevices.size() > 0) {
+   	 // Loop through paired devices
+		JSONArray	devArr	=	null;
+    		for (BluetoothDevice device : pairedDevices) {
+        	// Add the name and address to an array adapter to show in a ListView
+        	String devName	=	device.getName();
+		String devAddr	=	device.getAddress();	
+		JSONObject obj	=	null;
+		obj.put("name":devName);
+		obj.put("addr":devAddr);
+		devArr.push(obj.valueToString());
+  	    }
+	 	JSONObject data	=	null;	
+		data.put("arr",devArr);	
+		callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, data));
+		callbackContext.success();
+	}	
+	return true;
 	}
   	  callbackContext.error("Invalid action");
    	 return false;
@@ -49,6 +69,6 @@ public class Calendar extends CordovaPlugin {
     	System.err.println("Exception: " + e.getMessage());
     	callbackContext.error(e.getMessage());
 	    return false;
-} 
+	} 
 }		
 }
