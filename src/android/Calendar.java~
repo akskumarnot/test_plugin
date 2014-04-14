@@ -40,7 +40,7 @@ public class Calendar extends CordovaPlugin {
 	}
 
 	if(BLUE_LIST_PAIRED.equals(action)){
-	Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
+	Set<BluetoothDevice> pairedDevices = BA.getBondedDevices();
 	// If there are paired devices
 	if (pairedDevices.size() > 0) {
    	 // Loop through paired devices
