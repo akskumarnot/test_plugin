@@ -11,8 +11,8 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 
 //plugin result back to javascript
-import org.apache.cordova.api.Plugin;
-import org.apache.cordova.api.PluginResult;
+import org.apache.cordova.Plugin;
+import org.apache.cordova.PluginResult;
 
 
 public class Calendar extends CordovaPlugin {
