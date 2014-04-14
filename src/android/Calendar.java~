@@ -1,5 +1,6 @@
 package org.aksnot.calendar;
  
+import java.util.set;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.json.JSONObject;
@@ -11,7 +12,6 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 
 //plugin result back to javascript
-import org.apache.cordova.Plugin;
 import org.apache.cordova.PluginResult;
 
 
@@ -54,7 +54,7 @@ public class Calendar extends CordovaPlugin {
 		JSONObject obj	=	null;
 		obj.put("name",devName);
 		obj.put("addr",devAddr);
-		devArr.push(obj.valueToString());
+		devArr.put((Object)obj);
   	    }
 	 	JSONObject data	=	null;	
 		data.put("arr",devArr);	
