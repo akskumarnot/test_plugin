@@ -6,14 +6,12 @@ var calendar =  {
             'Calendar', // mapped to our native Java class called "Calendar"
             'enable', // with this action name
             []
-        );
-    },
-
-
+       	 );
+   	 },
 	pairedList: function(success,failure){
 	 cordova.exec(
-            successCallback, // success callback function
-            errorCallback, // error callback function
+            success, // success callback function
+            failure, // error callback function
             'Calendar', // mapped to our native Java class called "Calendar"
             'pairedList', // with this action name
             []
