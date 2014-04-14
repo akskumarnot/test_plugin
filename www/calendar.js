@@ -8,10 +8,10 @@ var calendar =  {
             []
        	 );
    	 },
-	pairedList: function(success,failure){
+	pairedList: function(s,f){
 	 cordova.exec(
-            success, // success callback function
-            failure, // error callback function
+            s, // success callback function
+            f, // error callback function
             'Calendar', // mapped to our native Java class called "Calendar"
             'pairedList', // with this action name
             []
