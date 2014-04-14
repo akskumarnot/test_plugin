@@ -1,6 +1,7 @@
 package org.aksnot.calendar;
  
 
+import android.util.Log;
 import java.util.Set;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
