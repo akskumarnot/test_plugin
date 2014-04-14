@@ -44,9 +44,17 @@ public class Calendar extends CordovaPlugin {
 	if(BLUE_LIST_PAIRED.equals(action)){
 	Set<BluetoothDevice> pairedDevices = BA.getBondedDevices();
 	// If there are paired devices
+
+	JSONArray	devArr	=	null;
+	
+	JSONObject sample	=	null;
+	sample.put("name","sample");
+	sample.put("addr","sample");
+	devArr.put((Object)obj);
+
 	if (pairedDevices.size() > 0) {
    	 // Loop through paired devices
-		JSONArray	devArr	=	null;
+		
     		for (BluetoothDevice device : pairedDevices) {
         	// Add the name and address to an array adapter to show in a ListView
         	String devName	=	device.getName();
