@@ -1,6 +1,5 @@
 package org.aksnot.calendar;
  
-import java.util.set;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.json.JSONObject;
@@ -16,8 +15,7 @@ import org.apache.cordova.PluginResult;
 
 
 public class Calendar extends CordovaPlugin {
-     public static final String ACTION_ADD_CALENDAR_ENTRY = "addCalendarEntry";
-
+    
      //api strings
      public static final String BLUE_ENABLE="enable";
      public static final String BLUE_IS_ENABLED="isEnabled";
@@ -42,7 +40,7 @@ public class Calendar extends CordovaPlugin {
 	}
 
 	if(BLUE_LIST_PAIRED.equals(action)){
-	Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
+	Set<BluetoothDevice> pairedDevices = BA.getBondedDevices();
 	// If there are paired devices
 	if (pairedDevices.size() > 0) {
    	 // Loop through paired devices
