@@ -51,22 +51,26 @@ public class Calendar extends CordovaPlugin {
 	sample.put("name","sample");
 	sample.put("addr","sample");
 	devArr.put((Object)sample);
+	Log.w("stop1", "yeah");
 
 	if (pairedDevices.size() > 0) {
    	 // Loop through paired devices
-		
+		Log.w("stop2", "yeah");
     		for (BluetoothDevice device : pairedDevices) {
         	// Add the name and address to an array adapter to show in a ListView
         	String devName	=	device.getName();
 		String devAddr	=	device.getAddress();	
 		JSONObject obj	=	null;
+		Log.w("name", devName);
 		obj.put("name",devName);
 		obj.put("addr",devAddr);
 		devArr.put((Object)obj);
   	    }
+		Log.w("stop2.5", "yeah");
 	 	JSONObject data	=	null;	
 		data.put("arr",devArr);	
 		callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, data));
+		Log.w("stop3", "yeah");
 	}	
 	return true;
 	}
