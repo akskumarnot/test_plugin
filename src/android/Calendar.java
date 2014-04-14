@@ -21,7 +21,7 @@ public class Calendar extends CordovaPlugin {
      //api strings
      public static final String BLUE_ENABLE="enable";
      public static final String BLUE_IS_ENABLED="isEnabled";
-     public static final String BLUE_LIST_PAIRED="pairedList"
+     public static final String BLUE_LIST_PAIRED="pairedList";
 	
      BluetoothAdapter BA= BluetoothAdapter.getDefaultAdapter();	
 
@@ -52,8 +52,8 @@ public class Calendar extends CordovaPlugin {
         	String devName	=	device.getName();
 		String devAddr	=	device.getAddress();	
 		JSONObject obj	=	null;
-		obj.put("name":devName);
-		obj.put("addr":devAddr);
+		obj.put("name",devName);
+		obj.put("addr",devAddr);
 		devArr.push(obj.valueToString());
   	    }
 	 	JSONObject data	=	null;	
