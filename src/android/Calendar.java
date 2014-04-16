@@ -49,6 +49,7 @@ public class Calendar extends CordovaPlugin {
 	// If there are paired devices
 	JSONArray	devArr	=	new JSONArray();
 	JSONObject sample	=	new JSONObject();
+	JSONObject data=null;
 	sample.put("name","sample");
 	sample.put("addr","sample");
 	devArr.put((Object)sample);
@@ -64,12 +65,12 @@ public class Calendar extends CordovaPlugin {
 		obj.put("name",devName);
 		obj.put("addr",devAddr);
 		devArr.put((Object)obj);
-  	    }
-	 	JSONObject data	=	new JSONObject();	
+  	    	}
+		}
+		JSONObject data	=	new JSONObject();	
 		data.put("arr",(Object)devArr);	
 		callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, data));	
 		return true;
-	}
 	}
 	} 
 	catch(Exception e) {
