@@ -37,9 +37,9 @@ public class Calendar extends CordovaPlugin {
 	if(BLUE_ENABLE.equals(action)){
 	 if (!BA.isEnabled()) {
          	BA.enable();
-	 callbackContext.success();
-	return true;
-     		 }	
+     	}
+	callbackContext.success();
+	return true;	
 	}
 
 	if(BLUE_LIST_PAIRED.equals(action)){
@@ -52,11 +52,9 @@ public class Calendar extends CordovaPlugin {
 	sample.put("name","sample");
 	sample.put("addr","sample");
 	devArr.put((Object)sample);
-	Log.w("stop1", "yeah");
 
 	if (pairedDevices.size() > 0) {
    	 // Loop through paired devices
-		Log.w("stop2", "yeah");
     		for (BluetoothDevice device : pairedDevices) {
         	// Add the name and address to an array adapter to show in a ListView
         	String devName	=	device.getName();
@@ -67,14 +65,11 @@ public class Calendar extends CordovaPlugin {
 		obj.put("addr",devAddr);
 		devArr.put((Object)obj);
   	    }
-		Log.w("stop2.5", "yeah");
 	 	JSONObject data	=	null;	
-		data.put("arr",devArr);	
-		callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, data));
-		callbackContext.success();
-		Log.w("stop3", "yeah");
-	}	
-	return true;
+		data.put("arr",(Object)devArr);	
+	}
+		callbackContext.sendPluginResult(new PluginResult(Status.OK, new JSONArray("test")));	
+		return true;
 	}
   	  callbackContext.error("Invalid action");
    	 return false;
