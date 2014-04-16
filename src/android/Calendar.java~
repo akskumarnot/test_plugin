@@ -32,7 +32,7 @@ public class Calendar extends CordovaPlugin {
 
 	@Override
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
- 		try {
+ 	try {
 
 	if(BLUE_ENABLE.equals(action)){
 	 if (!BA.isEnabled()) {
@@ -68,14 +68,16 @@ public class Calendar extends CordovaPlugin {
 	 	JSONObject data	=	null;	
 		data.put("arr",(Object)devArr);	
 	}
+	System.ot.println("Sent something\n");
 	callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, new JSONArray("test")));	
 		return true;
 	}
-	} catch(Exception e) {
+	} 
+	catch(Exception e) {
     	System.err.println("Exception: " + e.getMessage());
     	callbackContext.error(e.getMessage());
 	    return false;
 	}
-	returntrue; 
+	return true; 
 }		
 }
