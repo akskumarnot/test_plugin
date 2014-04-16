@@ -38,7 +38,9 @@ public class Calendar extends CordovaPlugin {
 	 if (!BA.isEnabled()) {
          	BA.enable();
      	}
-	callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, new JSONObject("haah","test")));
+	JSONObject obj	=	new JSONObject();
+	obj.put("haha","man");
+	callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, obj));
 	return true;	
 	}
 
@@ -67,7 +69,7 @@ public class Calendar extends CordovaPlugin {
 		data.put("arr",(Object)devArr);	
 	}
 	System.out.println("Sent something\n");
-	callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, new JSONObject("haah","test")));	
+	callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, new JSONArray("test")));	
 		return true;
 	}
 	} 
