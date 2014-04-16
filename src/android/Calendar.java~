@@ -38,16 +38,14 @@ public class Calendar extends CordovaPlugin {
 	 if (!BA.isEnabled()) {
          	BA.enable();
      	}
-	callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, new JSONArray("test")));
+	callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, new JSONObject("haah","test")));
 	return true;	
 	}
 
 	if(BLUE_LIST_PAIRED.equals(action)){
 	Set<BluetoothDevice> pairedDevices = BA.getBondedDevices();
 	// If there are paired devices
-
 	JSONArray	devArr	=	null;
-	
 	JSONObject sample	=	null;
 	sample.put("name","sample");
 	sample.put("addr","sample");
@@ -69,7 +67,7 @@ public class Calendar extends CordovaPlugin {
 		data.put("arr",(Object)devArr);	
 	}
 	System.out.println("Sent something\n");
-	callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, new JSONArray("test")));	
+	callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, new JSONObject("haah","test")));	
 		return true;
 	}
 	} 
