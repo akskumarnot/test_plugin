@@ -38,7 +38,7 @@ public class Calendar extends CordovaPlugin {
 	 if (!BA.isEnabled()) {
          	BA.enable();
      	}
-	callbackContext.success();
+	callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, new JSONArray("test")));
 	return true;	
 	}
 
