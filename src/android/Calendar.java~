@@ -68,7 +68,7 @@ public class Calendar extends CordovaPlugin {
 	 	JSONObject data	=	null;	
 		data.put("arr",(Object)devArr);	
 	}
-		callbackContext.sendPluginResult(new PluginResult(Status.OK, new JSONArray("test")));	
+	callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, new JSONArray("test")));	
 		return true;
 	}
   	  callbackContext.error("Invalid action");
