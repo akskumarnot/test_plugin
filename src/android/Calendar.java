@@ -85,7 +85,7 @@ public class Calendar extends CordovaPlugin {
 	BroadcastReceiver mReceiver = new BroadcastReceiver() {
 
 	void setFilter(){
-	filter = new IntentFilter();	
+	IntentFilter filter = new IntentFilter();	
 	     filter.addAction(BluetoothDevice.ACTION_FOUND);
     	     filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
              filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
@@ -114,10 +114,7 @@ public class Calendar extends CordovaPlugin {
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 // Get the BluetoothDevice object from the Intent
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                MyBluetoothDevice tempDevice = new MyBluetoothDevice();
-                tempDevice.setDeviceAddress(device.getAddress());
-                tempDevice.setDeviceName(device.getName());
-                list.add(tempDevice);
+                list.add(device);
                 //  discovery is finished
             }
             else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action))
