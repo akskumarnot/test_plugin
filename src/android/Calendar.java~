@@ -77,7 +77,7 @@ public class Calendar extends CordovaPlugin {
 
 	if(BLUE_DISCOVER.equals(action)){
 	
-	private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+	BroadcastReceiver mReceiver = new BroadcastReceiver() {
 	
 	public void  onCreate()
         {
