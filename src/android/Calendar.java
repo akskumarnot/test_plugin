@@ -89,7 +89,8 @@ public class Calendar extends CordovaPlugin {
 	     filter.addAction(BluetoothDevice.ACTION_FOUND);
     	     filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
              filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
-	     super.registerReceiver(this, filter);
+	     Context context=this.cordova.getActivity().getApplicationContext();
+	     context.registerReceiver(this, filter);
 	}
 	
 	public void  onCreate()
@@ -99,7 +100,8 @@ public class Calendar extends CordovaPlugin {
         }
 
 	protected void onPause() {
-	   super.unregisterReceiver(this);
+	   Context context=this.cordova.getActivity().getApplicationContext();
+	   context.unregisterReceiver(this);
 	}
 	 
 	protected void onResume() {	
