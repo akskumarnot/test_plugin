@@ -100,7 +100,7 @@ public class Calendar extends CordovaPlugin {
         }
 
 	protected void onPause() {
-	   Context context=this.cordova.getActivity().getApplicationContext();
+	   Context context=cordova.getActivity().getApplicationContext();
 	   context.unregisterReceiver(this);
 	}
 	 
