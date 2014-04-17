@@ -21,6 +21,7 @@ public class Calendar extends CordovaPlugin {
     
      //api strings
      public static final String BLUE_ENABLE="enable";
+     public static final String BLUE_DISCOVER="discover";
      public static final String BLUE_IS_ENABLED="isEnabled";
      public static final String BLUE_LIST_PAIRED="pairedList";
 	
@@ -72,6 +73,83 @@ public class Calendar extends CordovaPlugin {
 		callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, data));	
 		return true;
 	}
+
+	if(BLUE_DISCOVER.equals.(action)){
+	
+	private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+	
+	public void  onCreate()
+        {
+             filter = new IntentFilter();	
+	     filter.addAction(BluetoothDevice.ACTION_FOUND);
+    	     filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
+             filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+	     registerReceiver(this, filter);
+        }
+
+	protected void onPause() {
+	   unregisterReceiver(this);
+	   super.onPause();
+	}
+	 
+	@Override
+	protected void onResume() {	
+	     filter = new IntentFilter();	
+	     filter.addAction(BluetoothDevice.ACTION_FOUND);
+    	     filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
+             filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+	     registerReceiver(this, filter);
+	     super.onResume();
+	}		
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+	    ArrayList<BluetoothDevice> list	= new ArrayList<BluetoothDevice>();
+            // When discovery finds a device
+            if (BluetoothDevice.ACTION_FOUND.equals(action)) {
+                // Get the BluetoothDevice object from the Intent
+                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                MyBluetoothDevice tempDevice = new MyBluetoothDevice();
+                tempDevice.setDeviceAddress(device.getAddress());
+                tempDevice.setDeviceName(device.getName());
+                list.add(tempDevice);
+                //  discovery is finished
+            }
+            else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals)
+                if(list.size() == 0)
+                {
+                    //send back no data
+			data	=	new JSONObject();
+			data.put("err","no device discovered");
+			callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, data));	
+			return true;
+                }
+                else
+                {
+                   //send back the list of devices
+			JSONArray	arr	=	new JSONArray();
+			for(BluetoothDevice device : list){
+				//make a JSON object for each
+				JSONObject obj	=	new JSONObject();
+				String devName	=	device.getName();
+				String devAddr	=	device.getAddress();
+				obj.put("name",devName);
+				obj.put("addr",devAddr);
+				arr.put((Object)obj);	
+			}
+			//made the json aray ) pack it in a json obj ) send it off
+			data	=	new JSONObject();	
+			data.put("arr",(Object)arr);	
+			callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, data));	
+			return true;	
+                }
+
+            }
+        };
+    }
+}
+
 	} 
 	catch(Exception e) {
     	System.err.println("Exception: " + e.getMessage());
