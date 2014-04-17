@@ -37,7 +37,7 @@ public class Calendar extends CordovaPlugin {
 	}
 
 	@Override
-	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+	public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
 	
  	try {
 
@@ -89,7 +89,7 @@ public class Calendar extends CordovaPlugin {
 	     filter.addAction(BluetoothDevice.ACTION_FOUND);
     	     filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
              filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
-	     registerReceiver(this, filter);
+	     super.registerReceiver(this, filter);
 	}
 	
 	public void  onCreate()
@@ -99,7 +99,7 @@ public class Calendar extends CordovaPlugin {
         }
 
 	protected void onPause() {
-	   unregisterReceiver(this);
+	   super.unregisterReceiver(this);
 	}
 	 
 	protected void onResume() {	
