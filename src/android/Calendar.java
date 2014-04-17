@@ -17,6 +17,10 @@ import android.bluetooth.BluetoothDevice;
 //plugin result back to javascript
 import org.apache.cordova.PluginResult;
 
+import android.content.Context;
+import android.content.IntentFilter;
+import java.util.ArrayList;
+
 
 public class Calendar extends CordovaPlugin {
     
@@ -79,29 +83,27 @@ public class Calendar extends CordovaPlugin {
 	if(BLUE_DISCOVER.equals(action)){
 	
 	BroadcastReceiver mReceiver = new BroadcastReceiver() {
-	
-	public void  onCreate()
-        {
-             filter = new IntentFilter();	
+
+	void setFilter(){
+	filter = new IntentFilter();	
 	     filter.addAction(BluetoothDevice.ACTION_FOUND);
     	     filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
              filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
 	     registerReceiver(this, filter);
+	}
+	
+	public void  onCreate()
+        {
+           setFilter();  
         }
 
 	protected void onPause() {
 	   unregisterReceiver(this);
-	   super.onPause();
 	}
 	 
 	@Override
 	protected void onResume() {	
-	     filter = new IntentFilter();	
-	     filter.addAction(BluetoothDevice.ACTION_FOUND);
-    	     filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
-             filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
-	     registerReceiver(this, filter);
-	     super.onResume();
+	     setFilter();
 	}		
 
         @Override
@@ -118,7 +120,7 @@ public class Calendar extends CordovaPlugin {
                 list.add(tempDevice);
                 //  discovery is finished
             }
-            else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals)
+            else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action))
                 if(list.size() == 0)
                 {
                     //send back no data
