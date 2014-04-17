@@ -101,7 +101,6 @@ public class Calendar extends CordovaPlugin {
 	   unregisterReceiver(this);
 	}
 	 
-	@Override
 	protected void onResume() {	
 	     setFilter();
 	}		
@@ -118,6 +117,7 @@ public class Calendar extends CordovaPlugin {
                 //  discovery is finished
             }
             else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action))
+		JSONObject data	=	null;
                 if(list.size() == 0)
                 {
                     //send back no data
@@ -142,8 +142,7 @@ public class Calendar extends CordovaPlugin {
 			//made the json aray ) pack it in a json obj ) send it off
 			data	=	new JSONObject();	
 			data.put("arr",(Object)arr);	
-			callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, data));	
-			return true;	
+			callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, data));		
                 }
 
             }
