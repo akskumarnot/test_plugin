@@ -94,7 +94,8 @@ public class Calendar extends CordovaPlugin {
 	
 	public void  onCreate()
         {
-           setFilter();  
+           setFilter();
+	   BA.startDiscovery();
         }
 
 	protected void onPause() {
@@ -117,10 +118,10 @@ public class Calendar extends CordovaPlugin {
                 //  discovery is finished
             }
             else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action))
-		JSONObject data	=	null;
                 if(list.size() == 0)
                 {
                     //send back no data
+			JSONObject data	=	null;
 			data	=	new JSONObject();
 			data.put("err","no device discovered");
 			callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, data));	
@@ -140,6 +141,7 @@ public class Calendar extends CordovaPlugin {
 				arr.put((Object)obj);	
 			}
 			//made the json aray ) pack it in a json obj ) send it off
+			JSONObject data	=	null;
 			data	=	new JSONObject();	
 			data.put("arr",(Object)arr);	
 			callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, data));		
