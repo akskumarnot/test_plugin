@@ -158,6 +158,11 @@ public class Calendar extends CordovaPlugin {
     	callbackContext.error(e.getMessage());
 	    return false;
 	}
+	catch(JSONException e){
+    	System.err.println("Exception: " + e.getMessage());
+    	callbackContext.error(e.getMessage());
+	 return false;	
+ 	 }
 	
 	return true; 
 }
