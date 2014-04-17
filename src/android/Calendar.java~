@@ -119,7 +119,9 @@ public class Calendar extends CordovaPlugin {
                 list.add(device);
                 //  discovery is finished
             }
-            else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action))
+            else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)){
+
+		try {
                 if(list.size() == 0)
                 {
                     //send back no data
@@ -147,18 +149,21 @@ public class Calendar extends CordovaPlugin {
 			data.put("arr",(Object)arr);	
 			callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, data));		
                 }
+	       }
+
+	catch(JSONException e) {
+    	System.err.println("Exception: " + e.getMessage());
+    	callbackContext.error(e.getMessage());
+	    return false;
+	}
+		
+	      }
 
             }
         };
     }
 	}
 	
-	catch(JSONException e){
-    	System.err.println("Exception: " + e.getMessage());
-    	callbackContext.error(e.getMessage());
-	 return false;	
- 	 }
-
 	catch(Exception e) {
     	System.err.println("Exception: " + e.getMessage());
     	callbackContext.error(e.getMessage());
