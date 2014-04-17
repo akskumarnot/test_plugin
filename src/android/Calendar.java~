@@ -125,7 +125,6 @@ public class Calendar extends CordovaPlugin {
 			data	=	new JSONObject();
 			data.put("err","no device discovered");
 			callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, data));	
-			return true;
                 }
                 else
                 {
