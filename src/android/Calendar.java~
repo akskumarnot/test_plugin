@@ -148,7 +148,7 @@ public class Calendar extends CordovaPlugin {
             }
         };
     }
-}
+	}
 
 	catch(Exception e) {
     	System.err.println("Exception: " + e.getMessage());
@@ -157,4 +157,6 @@ public class Calendar extends CordovaPlugin {
 	}
 	
 	return true; 
+}
+
 }		

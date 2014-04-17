@@ -33,6 +33,7 @@ public class Calendar extends CordovaPlugin {
 
 	@Override
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+	
  	try {
 
 	if(BLUE_ENABLE.equals(action)){
@@ -148,7 +149,7 @@ public class Calendar extends CordovaPlugin {
             }
         };
     }
-}
+	}
 
 	catch(Exception e) {
     	System.err.println("Exception: " + e.getMessage());
@@ -157,4 +158,6 @@ public class Calendar extends CordovaPlugin {
 	}
 	
 	return true; 
+}
+
 }		
