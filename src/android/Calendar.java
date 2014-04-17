@@ -74,7 +74,7 @@ public class Calendar extends CordovaPlugin {
 		return true;
 	}
 
-	if(BLUE_DISCOVER.equals.(action)){
+	if(BLUE_DISCOVER.equals(action)){
 	
 	private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
 	
@@ -158,4 +158,3 @@ public class Calendar extends CordovaPlugin {
 	}
 	return true; 
 }		
-}
